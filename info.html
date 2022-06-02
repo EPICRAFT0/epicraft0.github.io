@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title> New Document </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="Generator" content="EditPlus">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta charset="utf-8" />
+<meta name="Description" content="">
+
+<script id=clientEventHandlersJS language=javascript>
+/******************************************下为浏览器信息************************************************/
+//获取浏览器相关信息
+function allinfo() {
+var appName = navigator.appName; //浏览器的正式名称
+var appVersion = navigator.appVersion; //浏览器的版本号
+var cookieEnabled = navigator.cookieEnabled; // 返回用户浏览器是否启用了cookie
+var cpuClass = navigator.cpuClass; //返回用户计算机的cpu的型号，通常intel芯片返回"x86"（火狐没有）
+
+var mimeType = navigator.mimeTypes; // 浏览器支持的所有MIME类型的数组
+var platform = navigator.platform; // 浏览器正在运行的操作系统平台，包括Win16(windows3.x) 
+// Win32(windows98,Me,NT,2000,xp),Mac68K(Macintosh 680x0)
+// 和ＭacPPC(Macintosh PowerPC)
+var plugins = navigator.plugins; // 安装在浏览器上的所有插件的数组
+var userLanguage = navigator.userLanguage; // 用户在自己的操作系统上设置的语言（火狐没有）
+var userAgent = navigator.userAgent; //包含以下属性中所有或一部分的字符串：appCodeName,appName,appVersion,language,platform
+var systemLanguage = navigator.systemLanguage; // 用户操作系统支持的默认语言（火狐没有）
+
+//director
+
+var appCodeName = navigator.appCodeName; //与浏览器相关的内部代码名
+var appMinorVersion = navigator.appMinorVersion; //辅版本号（通常应用于浏览器的补丁或服务包)
+
+var language = navigator.language; //浏览器支持的语言 （IE没有）
+
+var onLine = navigator.onLine; //返回浏览器是否处于在线模式（IE4以上版本）
+
+var opsProfile = navigator.opsProfile; // 未定义 （IE、火狐没有）
+
+var oscpu = navigator.oscpu; //浏览器正在运行的操作系统，其中可能有CPU的信息（IE没有）
+
+var product = navigator.product; // 浏览器的产品名（IE没有）
+
+var productSub = navigator.productSub; //关于浏览器更多信息（IE没有）
+
+var securityPolicy = navigator.securityPolicy; // 浏览器支持的加密类型（IE没有）
+
+var userProfile = navigator.userProfile; // 返回一个UserProfile对象，它存储用户的个人信息（火狐没有）
+
+var vender = navigator.vender; // 浏览器厂商名称（IE、火狐没有）
+
+var vendorSub = navigator.vendorSub; // 关于浏览器厂商更多的信息
+
+var webkitPersistentStorage = navigator.webkitPersistentStorage;
+
+var info = "<table border=1>";
+var type = "";
+if (isIe()) {
+type = "IE浏览器";
+} else if (isFireFox()) {
+type = "火狐浏览器";
+}
+info += "<tr><td>IE特有属性：</td><td>" + navigator.msManipulationViewsEnabled + "</td></tr>";
+info += "<tr><td>浏览器类型：</td><td>" + type + "</td></tr>";
+info += "<tr><td>weizhi ：</td><td>" + webkitPersistentStorage + "</td></tr>";
+info += "<tr><td>浏览器属性信息：</td><td>" + userAgent + "</td></tr>";
+info += "<tr><td>浏览器的正式名称：</td><td>" + appName + "</td></tr>";
+info += "<tr><td>浏览器的版本号：</td><td>" + appVersion + "</td></tr>";
+info += "<tr><td>浏览器相关的内部代码名：</td><td>" + appCodeName + "</td></tr>";
+info += "<tr><td>浏览器相关的辅代码号：</td><td>" + appMinorVersion + "</td></tr>";
+info += "<tr><td>浏览器支持的语言IE没有）：</td><td>" + language + "</td></tr>";
+info += "<tr><td>浏览器是否处于在线模式：</td><td>" + onLine + "</td></tr>";
+info += "<tr><td>浏览器的产品名（IE没有）：</td><td>" + product + "</td></tr>";
+info += "<tr><td>浏览器更多信息：</td><td>" + productSub + "</td></tr>";
+info += "<tr><td>浏览器厂商名称：</td><td>" + vender + "</td></tr>";
+info += "<tr><td>浏览器厂商更多信息：</td><td>" + vendorSub + "</td></tr>";
+info += "<tr><td>浏览器的是否启用了cookie：</td><td>" + cookieEnabled + "</td></tr>";
+info += "<tr><td>cpu等级：</td><td>" + cpuClass + "</td></tr>";
+info += "<tr><td>浏览器的MIME类型：</td><td>" + mimeType.length + "</td></tr>";
+info += "<tr><td>系统平台：</td><td>" + platform + "</td></tr>";
+info += "<tr><td>安装的插件：</td><td>" + plugins + "</td></tr>";
+info += "<tr><td>插件的数量：</td><td>" + plugins.length + "</td></tr>";
+info += "<tr><td>插件的名称：</td><td>" + getPluginName() + "</td></tr>";
+info += "<tr><td>用户设置的操作系统语言：</td><td>" + userLanguage + "</td></tr>";
+info += "<tr><td>操作系统支持的默认语言：</td><td>" + systemLanguage + "</td></tr>";
+info += "<tr><td>Director：</td><td>" + checkePlugs("Director") + "</td></tr>";
+info += "<tr><td>javaEnabled：</td><td>" + navigator.javaEnabled() + "</td></tr>";
+info += "<tr><td>是否有quickTime：</td><td>" + checkePlugs("QuickTime") + "</td></tr>";
+info += "<tr><td>flash插件情况：</td><td>" + checkePlugs('Shockwave Flash') + "</td></tr>";
+info += "<tr><td>是否有MediaPlayer：</td><td>" + checkePlugs("MediaPlayer") + "</td></tr>";
+info += "<tr><td>是否有realPlayer:</td><td>" + checkePlugs("RealPlayer") + "</td></tr>";
+info += "<tr><td>屏幕分辨率高度：</td><td>" + window.screen.height + "</td></tr>";
+info += "<tr><td>屏幕分辨率宽度：</td><td>" + window.screen.width + "</td></tr>";
+info += "<tr><td>颜色质量：</td><td>" + window.screen.colorDepth + "位</td></tr>";
+info += "<tr><td>像素：</td><td>" + window.screen.deviceXDPI + "像素/英寸</td></tr>";
+info += "<tr><td>字体是否平滑：</td><td>" + window.screen.fontSmoothingEnabled + "</td></tr>";
+//info += "<tr><td>规定浏览器是否启用数据污点：</td><td>" + navigator.taintEnabled() + "</td></tr>";
+info += "</table>";
+document.getElementById("elInfo").innerHTML = info;
+return info;
+
+ 
+
+}
+//获取插件所有的名称
+function getPluginName() {
+var info = "";
+var plugins = navigator.plugins;
+if (plugins.length > 0) {
+for (i = 0; i < navigator.plugins.length; i++) {
+info += navigator.plugins[i].name + ";";
+}
+}
+return info;
+}
+//检查是否安装了某插件，如果安装了返回版本号
+function checkePlugs(pluginname) {
+var f = "-"
+var plugins = navigator.plugins;
+if (plugins.length > 0) {
+for (i = 0; i < navigator.plugins.length; i++) {
+if (navigator.plugins[i].name.indexOf(pluginname) >= 0) {
+f = navigator.plugins[i].description.split(pluginname)[1];
+return f;
+break;
+}
+}
+}
+return false;
+}
+//判断是否IE
+function isIe() {
+var i = navigator.userAgent.toLowerCase().indexOf("msie");
+return i >= 0;
+}
+//判断是否firefox
+function isFireFox() {
+var i = navigator.userAgent.toLowerCase().indexOf("firefox");
+return i >= 0;
+}
+
+ 
+
+ 
+
+/******************************************以上为浏览器信息，以下为pc信息************************************************/
+var locator = new ActiveXObject("WbemScripting.SWbemLocator");
+var service = locator.ConnectServer(".");
+
+function cpuInfo() { //CPU 信息 
+var properties = service.ExecQuery("SELECT * FROM Win32_Processor");
+var e = new Enumerator(properties);
+var info = "<table border=1>";
+info += "<tr bgcolor='#CDEDED' style='font-weight: bold;' ><td width='450' >CPU 信息</td></tr>";
+for (; !e.atEnd(); e.moveNext()) {
+var p = e.item();
+info += "<tr style='color: red'><td >CPU序列号:" + p.ProcessorID + "</td></tr>";
+info += "<tr><td >" + p.Caption + "</td></tr>";
+info += "<tr><td >CPU编号：" + p.DeviceID + "</td></tr>";
+info += "<tr><td >CPU型号：" + p.Name + "</td></tr>";
+info += "<tr><td >CPU状态：" + p.CpuStatus + "</td></tr>";
+info += "<tr><td >CPU可用性：" + p.Availability + "</td></tr>";
+info += "<tr><td >CUP Level：" + p.Level + "</td></tr>";
+info += "<tr><td >主机名称：" + p.SystemName + "</td></tr>";
+info += "<tr><td >Processor Type：" + p.ProcessorType + "</td></tr>";
+}
+info += "</table>";
+return info;
+}
+
+function softDisk() { //软盘信息 
+var properties = service.ExecQuery("SELECT * FROM Win32_FloppyDrive");
+var e = new Enumerator(properties);
+var info = "<table border=1>";
+info += "<tr bgcolor='#CDEDED' style='font-weight: bold;' ><td width='450'>软盘信息</td></tr>";
+for (; !e.atEnd(); e.moveNext()) {
+var p = e.item();
+info += "<tr><td >" + p.Description + "</td></tr>";
+info += "<tr><td >" + p.DeviceID + "</td></tr>";
+info += "<tr><td >" + p.Status + "</td></tr>";
+info += "<tr><td >" + p.Manufacuturer + "</td></tr>";
+}
+info += "</table>";
+return info;
+}
+
+function RomInfo() { //CD-ROM 信息 
+var properties = service.ExecQuery("SELECT * FROM Win32_CDROMDrive");
+var e = new Enumerator(properties);
+var info = "<table border=1>";
+info += "<tr bgcolor='#CDEDED' style='font-weight: bold;'><td width='450' >CD-ROM 信息 </td></tr>";
+for (; !e.atEnd(); e.moveNext()) {
+var p = e.item();
+info += "<tr><td >驱动器名称：" + p.Caption + "</td></tr>";
+info += "<tr><td >描述：" + p.Description + "</td></tr>";
+info += "<tr><td >盘符：" + p.Drive + "</td></tr>";
+info += "<tr><td >驱动器状态：" + p.Status + "</td></tr>";
+info += "<tr><td >是否在使用：" + p.MediaLoaded + "</td></tr>";
+}
+info += "</table>";
+return info;
+}
+
+function keyBoardInfo() { //键盘信息 
+var properties = service.ExecQuery("SELECT * FROM Win32_Keyboard");
+var e = new Enumerator(properties);
+var info = "<table border=1>";
+info += "<tr bgcolor='#CDEDED' style='font-weight: bold;'><td width='450'>键盘信息 </td></tr>";
+for (; !e.atEnd(); e.moveNext()) {
+var p = e.item();
+info += "<tr><td >键盘描述：" + p.Description + "</td></tr>";
+info += "<tr><td >键盘名称：" + p.Name + "</td></tr>";
+info += "<tr><td >键盘状态：" + p.Status + "</td></tr>";
+}
+info += "</table>";
+return info;
+}
+
+function mainBoard() { //主板信息 
+var properties = service.ExecQuery("SELECT * FROM Win32_BaseBoard");
+var e = new Enumerator(properties);
+var info = "<table border=1>";
+info += "<tr bgcolor='#CDEDED' style='font-weight: bold;'><td width='450'>主板信息 </td></tr>";
+for (; !e.atEnd(); e.moveNext()) {
+var p = e.item();
+info += "<tr style='color: red'><td >主板ID：" + p.SerialNumber + "</td></tr>";
+info += "<tr><td >" + p.HostingBoard + "</td></tr>";
+info += "<tr><td >制造商：" + p.Manufacturer + "</td></tr>";
+info += "<tr><td >是否开启：" + p.PoweredOn + "</td></tr>";
+info += "<tr><td >型号：" + p.Product + "</td></tr>";
+info += "<tr><td >版本：" + p.Version + "</td></tr>";
+}
+info += "</table>";
+return info;
+}
+
+function disk() { //硬盘序列号 信息
+var properties = service.ExecQuery("SELECT * FROM Win32_DiskDrive");
+var e = new Enumerator(properties);
+var info = "<table border=1>";
+info += "<tr bgcolor='#CDEDED' style='font-weight: bold;' ><td width='450'>硬盘信息 </td></tr>";
+for (; !e.atEnd(); e.moveNext()) {
+var p = e.item();
+info += "<tr style='color: red'><td >硬盘序列号：" + p.signature + "</td></tr>";
+}
+info += "</table>";
+return info;
+}
+//获取Ram信息
+function raminfo() {
+var system = new Enumerator(service.ExecQuery("SELECT * FROM Win32_ComputerSystem")).item();
+
+var physicMenCap = Math.ceil(system.TotalPhysicalMemory / 1024 / 1024);
+//内存信息 
+var memory = new Enumerator(service.ExecQuery("SELECT * FROM Win32_PhysicalMemory"));
+for (var mem = [], i = 0; !memory.atEnd(); memory.moveNext()) {
+mem[i++] = {
+cap: memory.item().Capacity / 1024 / 1024,
+speed: memory.item().Speed
+};
+}
+
+var info = "<table border=1>";
+info += "<tr bgcolor='#CDEDED' style='font-weight: bold;' ><td width='450'>内存信息 </td></tr>";
+info += "<tr style='color: red'><td >内存总量：" + (mem[0].cap + mem[1].cap) + "M</td></tr>";
+info += "<tr style='color: red'><td >可用物理内存：" + physicMenCap + "M</td></tr>";
+info += "</table>";
+return info;
+}
+
+//获取网络连接信息
+function ipinfo() {
+
+var properties = service.ExecQuery("SELECT * FROM Win32_NetworkAdapterConfiguration Where IPEnabled=TRUE");
+var e = new Enumerator(properties);
+var info = "<table border=1>";
+info += "<tr bgcolor='#CDEDED' style='font-weight: bold;' ><td width='450'>网络连接信息：</td></tr>";
+var i = 1;
+for (; !e.atEnd(); e.moveNext()) {
+var p = e.item();
+info += "<tr style='color: red'><td >MAC地址" + i + "：" + p.MACAddress + "</td></tr>";
+info += "<tr style='color: red'><td >IP地址" + i + "：" + p.IPAddress(0) + "</td></tr>";
+i++;
+}
+info += "</table>";
+return info;
+}
+
+function pcInfo() { //所有信息
+
+var info = cpuInfo();
+info += disk();
+info += raminfo();
+info += mainBoard();
+info += ipinfo();
+info += keyBoardInfo();
+info += RomInfo();
+info += softDisk();
+
+document.getElementById('elInfo').innerHTML = info;
+return info;
+}
+
+
+/******************************************以上为pc信息************************************************/
+</script>
+
+</head>
+
+<body>
+
+<INPUT id="Button1" type="button" value="浏览器所有信息" name="Button1" language=javascript onclick="allinfo()">
+
+<INPUT id="Button1" type="button" value="客户端pc信息" name="Button1" language=javascript onclick="pcInfo()">
+
+<div id="elInfo">
+
+</div>
+<div class="css-10ek3sv"><div class="undefined css-9t2q2b"><div class="css-18rllp"><div class="css-1pazx8y"></div><div class="css-1kmlfpy"></div><div class="css-1k0sgq4"></div><div class="css-1cwyqsy"></div><div class="css-6olsbh"></div><div></div><div></div><div class="css-k008qs"><svg viewBox="0 0 356 106" preserveAspectRatio="xMidYMid meet" class="css-1gc3azf" id="bddebbac"><defs id="SvgjsDefs1006"></defs><g id="SvgjsG1007" featurekey="symbolFeature-0" transform="matrix(3.125,0,0,3.125,5.587935447692871e-7,4.50000074505806)" fill="url(#symbol-foil0.1)"><path xmlns="http://www.w3.org/2000/svg" d="M17.063 0l-.031.156-5 22-.188.844h3.094l.031-.156 5-22 .188-.844h-3.094zm-7.063 3l-.406.313-9 7-.594.469v1.438l.594.469 9 7 .406.313v-3.781l-6.063-4.719 6.063-4.719v-3.781zm12 0v3.781l6.063 4.719-6.063 4.719v3.781l.406-.313 9-7 .594-.469v-1.438l-.594-.469-9-7-.406-.313z" transform="translate(0 4)"></path></g><g id="SvgjsG1008" featurekey="textGroupContainer" transform="matrix(1,0,0,1,355,0)" fill="url(#symbol-foil0.4)"><rect xmlns="http://www.w3.org/2000/svg" y="0" height="1" width="1" opacity="0"></rect><rect xmlns="http://www.w3.org/2000/svg" y="0" x="-235" width="3" height="106"></rect></g><g id="SvgjsG1009" featurekey="vMvB0T-0" transform="matrix(2.318571702376495,0,0,2.318571702376495,134.52214327562112,13.042193973592179)" fill="url(#symbol-foil0.2)"><path d="M4.66 15.96 l-0.02 1.44 l0 0.02 q0.92 -0.04 1.48 -0.04 l4.64 0 q0 0.74 -0.06 1.14 q-0.24 1.54 -2.04 1.54 l-5.32 0 q-0.86 0 -1.35 -0.5 t-0.49 -1.36 l0 -11.72 l0.14 -0.14 l8.62 0 q0.12 0.58 0.12 1.26 t-0.28 1.42 l-5.46 0 l0.02 1.44 l0 1.4 q0.52 -0.02 1.36 -0.02 l3.06 0 q0.18 0.56 0.18 1.28 t-0.18 1.32 l-4.42 0 l0 1.52 z M17.76 15.719999999999999 l-1.58 0 l0 4.28 q-0.64 0.12 -1.6 0.12 q-0.98 0 -1.6 -0.12 l0 -13.56 l0.14 -0.14 q1.74 -0.04 2.89 -0.06 t1.75 -0.02 q1.1 0 2.01 0.3 t1.55 0.9 t0.99 1.49 t0.35 2.05 t-0.36 2.05 t-1 1.49 t-1.55 0.91 t-1.99 0.31 z M16.18 8.66 l0 4.66 q0.56 -0.02 0.89 -0.03 t0.43 -0.01 q0.54 0 0.9 -0.19 t0.58 -0.5 t0.32 -0.73 t0.1 -0.88 q0 -0.44 -0.1 -0.86 t-0.31 -0.74 t-0.55 -0.51 t-0.8 -0.19 l-0.82 0 t-0.64 -0.02 z M24.8 20 l0 -13.66 q0.62 -0.12 1.6 -0.12 t1.62 0.12 l0 13.66 q-0.64 0.12 -1.62 0.12 t-1.6 -0.12 z M38.24 11.78 l0 -0.24 q0 -2.96 -2.2 -2.96 q-1.26 0 -1.82 1.15 t-0.56 3.39 q0 2.22 0.7 3.3 t2.04 1.08 q0.7 0 1.55 -0.33 t1.85 -1.05 q0.5 0.34 0.93 0.93 t0.53 1.13 q-0.46 0.44 -1.07 0.83 t-1.32 0.67 t-1.48 0.45 t-1.55 0.17 q-1.54 0 -2.6 -0.59 t-1.71 -1.57 t-0.94 -2.26 t-0.29 -2.66 q0 -1.8 0.45 -3.15 t1.22 -2.25 t1.81 -1.35 t2.22 -0.45 q1.2 0 2.18 0.32 t1.67 0.88 t1.06 1.32 t0.37 1.64 q0 1.78 -1.82 1.78 q-0.54 0 -1.22 -0.18 z M53.080000000000005 10.56 q0 0.66 -0.2 1.25 t-0.53 1.06 t-0.78 0.82 t-0.93 0.53 q1.04 0.38 1.54 1.84 l0.6 1.7 q0.34 1 1 1.48 q-0.3 0.4 -0.9 0.67 t-1.32 0.27 t-1.12 -0.41 t-0.74 -1.43 l-0.72 -2.1 q-0.22 -0.6 -0.59 -0.92 t-1.11 -0.32 l-0.82 0 l0 5 q-0.64 0.12 -1.6 0.12 t-1.58 -0.12 l0 -13.56 l0.14 -0.14 q1.74 -0.04 2.93 -0.06 t1.87 -0.02 q1.1 0 2 0.27 t1.53 0.81 t0.98 1.36 t0.35 1.9 z M46.46000000000001 8.62 l0 3.92 q0.9 0 1.54 -0.03 t1.03 -0.24 t0.59 -0.59 t0.2 -1.1 q0 -1.94 -1.88 -1.94 l-0.83 0 t-0.65 -0.02 z M58.900000000000006 17.14 q-0.54 0 -0.8 -0.02 l-0.86 2.9 q-0.48 0.12 -1.34 0.12 q-0.96 0 -1.56 -0.22 l-0.1 -0.16 l4.4 -13.42 q0.78 -0.12 1.82 -0.12 q1.18 0 1.88 0.14 l4.32 13.44 q-0.7 0.38 -1.58 0.38 q-1.04 0 -1.46 -0.36 t-0.72 -1.38 l-0.38 -1.32 q-0.26 0.02 -0.78 0.02 l-2.84 0 z M58.84 14.620000000000001 l0.8 -0.02 l1.46 0 q0.1 0 0.35 0.01 t0.37 0.01 l-0.34 -1.24 q-0.48 -1.68 -1.1 -4.12 l-0.12 0 q-0.16 0.86 -0.96 3.82 z M71.52000000000001 9.06 l0.02 1.56 l0 1.26 l4.28 0 q0.16 0.6 0.16 1.31 t-0.16 1.31 l-4.28 0 l0 5.5 q-0.64 0.12 -1.6 0.12 t-1.6 -0.12 l0 -13.54 l0.14 -0.12 l8.56 0 q0.12 0.5 0.12 1.25 t-0.41 1.11 t-1.29 0.36 l-3.94 0 z M84.22000000000001 8.98 l0.02 1.48 l0 9.54 q-0.68 0.12 -1.62 0.12 t-1.58 -0.12 l0 -11.02 l-1.28 0.02 l-2.06 0 q-0.12 -0.58 -0.12 -1.33 t0.12 -1.33 l9.9 0 q0.16 0.52 0.16 1.26 t-0.4 1.07 t-1.28 0.33 l-0.58 0 l-1.26 -0.02 l-0.02 0 z"></path></g><g id="SvgjsG1010" featurekey="sloganFeature-0" transform="matrix(0.691742316856766,0,0,0.691742316856766,137.80631266584368,66.09857375513384)" fill="url(#symbol-foil0.6)"><path d="M0.28 7.359999999999999 l0 -1.72 l11.66 0 l0 1.72 l-4.86 0 l0 12.64 l-1.94 0 l0 -12.64 l-4.86 0 z M26.532000000000004 11.58 l0 -5.94 l1.94 0 l0 14.36 l-1.94 0 l0 -6.7 l-7.5 0 l0 6.7 l-1.94 0 l0 -14.36 l1.94 0 l0 5.94 l7.5 0 z M37.083999999999996 5.640000000000001 l0 14.36 l-1.94 0 l0 -14.36 l1.94 0 z M53.256 17.240000000000002 l0 -11.6 l1.88 0 l0 14.36 l-2.18 0 l-7.3 -11.6 l-0.04 0 l0 11.6 l-1.88 0 l0 -14.36 l2.3 0 l7.18 11.6 l0.04 0 z M63.448 14.96 l0 5.04 l-1.94 0 l0 -14.36 l1.94 0 l0 6.96 l6.96 -6.96 l2.68 0 l-5.98 5.8 l6.14 8.56 l-2.52 0 l-5.02 -7.2 z M87.172 20 l0 -14.36 l5.82 0 c3.74 0 6.04 2.84 6.04 6.98 c0 3.22 -1.4 7.38 -6.12 7.38 l-5.74 0 z M89.112 7.300000000000001 l0 11.04 l3.76 0 c2.52 0 4.16 -1.98 4.16 -5.6 s-1.66 -5.44 -4.3 -5.44 l-3.62 0 z M107.08399999999999 5.640000000000001 l0 14.36 l-1.94 0 l0 -14.36 l1.94 0 z M115.87599999999998 13.48 l0 6.52 l-1.94 0 l0 -14.36 l9.94 0 l0 1.72 l-8 0 l0 4.4 l7.04 0 l0 1.72 l-7.04 0 z M131.428 13.48 l0 6.52 l-1.94 0 l0 -14.36 l9.94 0 l0 1.72 l-8 0 l0 4.4 l7.04 0 l0 1.72 l-7.04 0 z M155.64 18.28 l0 1.72 l-10.6 0 l0 -14.36 l10.46 0 l0 1.72 l-8.52 0 l0 4.4 l7.86 0 l0 1.72 l-7.86 0 l0 4.8 l8.66 0 z M163.69199999999998 13.84 l0 6.16 l-1.94 0 l0 -14.36 l6.64 0 c2.36 0 4.72 0.82 4.72 3.86 c0 2.12 -1.08 2.9 -2 3.44 c0.82 0.34 1.64 0.7 1.72 2.7 l0.12 2.6 c0.02 0.8 0.12 1.1 0.72 1.44 l0 0.32 l-2.38 0 c-0.28 -0.88 -0.34 -3.06 -0.34 -3.6 c0 -1.18 -0.24 -2.56 -2.56 -2.56 l-4.7 0 z M163.69199999999998 7.300000000000001 l0 4.88 l4.5 0 c1.42 0 2.92 -0.36 2.92 -2.48 c0 -2.22 -1.62 -2.4 -2.58 -2.4 l-4.84 0 z M190.08399999999997 18.28 l0 1.72 l-10.6 0 l0 -14.36 l10.46 0 l0 1.72 l-8.52 0 l0 4.4 l7.86 0 l0 1.72 l-7.86 0 l0 4.8 l8.66 0 z M205.47599999999997 17.240000000000002 l0 -11.6 l1.88 0 l0 14.36 l-2.18 0 l-7.3 -11.6 l-0.04 0 l0 11.6 l-1.88 0 l0 -14.36 l2.3 0 l7.18 11.6 l0.04 0 z M212.48799999999997 7.359999999999999 l0 -1.72 l11.66 0 l0 1.72 l-4.86 0 l0 12.64 l-1.94 0 l0 -12.64 l-4.86 0 z M231.57999999999996 17.88 l0 2.12 l-2.08 0 l0 -2.12 l2.08 0 z"></path></g></svg><svg height="0" width="0"><pattern id="symbol-foil0" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.07)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.1" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.1)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.2" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.2)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.3" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.3)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.4" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.4)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.5" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.5)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.6" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.6)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.7" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.7)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.8" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.8)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.9" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.9)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.1" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.1)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.2" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.2)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.3" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.3)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.4" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.4)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.5" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.5)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.6" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.6)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.7" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.7)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.8" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.8)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.9" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.9)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil2" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(2)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><filter id="lower-highlight"><feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur"></feGaussianBlur><feOffset in="blur" dx="-0.5" dy="0.5" result="offsetBlur"></feOffset><feFlood flood-color="#ffffff" flood-opacity="0.15" result="offsetColor"></feFlood><feComposite in="offsetColor" in2="offsetBlur" operator="in" result="offsetBlur"></feComposite></filter><filter id="upper-shadow"><feDropShadow dx="-0.5" dy="-1" stdDeviation="0.5"></feDropShadow></filter><filter id="inset-shadow"><feOffset dx="-0.5" dy="0.5"></feOffset>                                                         <feGaussianBlur stdDeviation="0.4" result="offset-blur"></feGaussianBlur>                           <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"></feComposite> <feFlood flood-color="#300100" flood-opacity="0" result="color"></feFlood>                     <feComposite operator="in" in="color" in2="inverse" result="shadow"></feComposite>               <feComponentTransfer in="shadow" result="shadow">                                   <feFuncA type="linear" slope="1"></feFuncA></feComponentTransfer></filter></svg><svg viewBox="0 0 356 106" preserveAspectRatio="xMidYMid meet" class="css-146h117" id="ahbcbeaf"><defs id="SvgjsDefs1006"></defs><g id="SvgjsG1007" featurekey="symbolFeature-0" transform="matrix(3.125,0,0,3.125,5.587935447692871e-7,4.50000074505806)" fill="url(#symbol-foil0.1)"><path xmlns="http://www.w3.org/2000/svg" d="M17.063 0l-.031.156-5 22-.188.844h3.094l.031-.156 5-22 .188-.844h-3.094zm-7.063 3l-.406.313-9 7-.594.469v1.438l.594.469 9 7 .406.313v-3.781l-6.063-4.719 6.063-4.719v-3.781zm12 0v3.781l6.063 4.719-6.063 4.719v3.781l.406-.313 9-7 .594-.469v-1.438l-.594-.469-9-7-.406-.313z" transform="translate(0 4)"></path></g><g id="SvgjsG1008" featurekey="textGroupContainer" transform="matrix(1,0,0,1,355,0)" fill="url(#symbol-foil0.4)"><rect xmlns="http://www.w3.org/2000/svg" y="0" height="1" width="1" opacity="0"></rect><rect xmlns="http://www.w3.org/2000/svg" y="0" x="-235" width="3" height="106"></rect></g><g id="SvgjsG1009" featurekey="vMvB0T-0" transform="matrix(2.318571702376495,0,0,2.318571702376495,134.52214327562112,13.042193973592179)" fill="url(#symbol-foil0.2)"><path d="M4.66 15.96 l-0.02 1.44 l0 0.02 q0.92 -0.04 1.48 -0.04 l4.64 0 q0 0.74 -0.06 1.14 q-0.24 1.54 -2.04 1.54 l-5.32 0 q-0.86 0 -1.35 -0.5 t-0.49 -1.36 l0 -11.72 l0.14 -0.14 l8.62 0 q0.12 0.58 0.12 1.26 t-0.28 1.42 l-5.46 0 l0.02 1.44 l0 1.4 q0.52 -0.02 1.36 -0.02 l3.06 0 q0.18 0.56 0.18 1.28 t-0.18 1.32 l-4.42 0 l0 1.52 z M17.76 15.719999999999999 l-1.58 0 l0 4.28 q-0.64 0.12 -1.6 0.12 q-0.98 0 -1.6 -0.12 l0 -13.56 l0.14 -0.14 q1.74 -0.04 2.89 -0.06 t1.75 -0.02 q1.1 0 2.01 0.3 t1.55 0.9 t0.99 1.49 t0.35 2.05 t-0.36 2.05 t-1 1.49 t-1.55 0.91 t-1.99 0.31 z M16.18 8.66 l0 4.66 q0.56 -0.02 0.89 -0.03 t0.43 -0.01 q0.54 0 0.9 -0.19 t0.58 -0.5 t0.32 -0.73 t0.1 -0.88 q0 -0.44 -0.1 -0.86 t-0.31 -0.74 t-0.55 -0.51 t-0.8 -0.19 l-0.82 0 t-0.64 -0.02 z M24.8 20 l0 -13.66 q0.62 -0.12 1.6 -0.12 t1.62 0.12 l0 13.66 q-0.64 0.12 -1.62 0.12 t-1.6 -0.12 z M38.24 11.78 l0 -0.24 q0 -2.96 -2.2 -2.96 q-1.26 0 -1.82 1.15 t-0.56 3.39 q0 2.22 0.7 3.3 t2.04 1.08 q0.7 0 1.55 -0.33 t1.85 -1.05 q0.5 0.34 0.93 0.93 t0.53 1.13 q-0.46 0.44 -1.07 0.83 t-1.32 0.67 t-1.48 0.45 t-1.55 0.17 q-1.54 0 -2.6 -0.59 t-1.71 -1.57 t-0.94 -2.26 t-0.29 -2.66 q0 -1.8 0.45 -3.15 t1.22 -2.25 t1.81 -1.35 t2.22 -0.45 q1.2 0 2.18 0.32 t1.67 0.88 t1.06 1.32 t0.37 1.64 q0 1.78 -1.82 1.78 q-0.54 0 -1.22 -0.18 z M53.080000000000005 10.56 q0 0.66 -0.2 1.25 t-0.53 1.06 t-0.78 0.82 t-0.93 0.53 q1.04 0.38 1.54 1.84 l0.6 1.7 q0.34 1 1 1.48 q-0.3 0.4 -0.9 0.67 t-1.32 0.27 t-1.12 -0.41 t-0.74 -1.43 l-0.72 -2.1 q-0.22 -0.6 -0.59 -0.92 t-1.11 -0.32 l-0.82 0 l0 5 q-0.64 0.12 -1.6 0.12 t-1.58 -0.12 l0 -13.56 l0.14 -0.14 q1.74 -0.04 2.93 -0.06 t1.87 -0.02 q1.1 0 2 0.27 t1.53 0.81 t0.98 1.36 t0.35 1.9 z M46.46000000000001 8.62 l0 3.92 q0.9 0 1.54 -0.03 t1.03 -0.24 t0.59 -0.59 t0.2 -1.1 q0 -1.94 -1.88 -1.94 l-0.83 0 t-0.65 -0.02 z M58.900000000000006 17.14 q-0.54 0 -0.8 -0.02 l-0.86 2.9 q-0.48 0.12 -1.34 0.12 q-0.96 0 -1.56 -0.22 l-0.1 -0.16 l4.4 -13.42 q0.78 -0.12 1.82 -0.12 q1.18 0 1.88 0.14 l4.32 13.44 q-0.7 0.38 -1.58 0.38 q-1.04 0 -1.46 -0.36 t-0.72 -1.38 l-0.38 -1.32 q-0.26 0.02 -0.78 0.02 l-2.84 0 z M58.84 14.620000000000001 l0.8 -0.02 l1.46 0 q0.1 0 0.35 0.01 t0.37 0.01 l-0.34 -1.24 q-0.48 -1.68 -1.1 -4.12 l-0.12 0 q-0.16 0.86 -0.96 3.82 z M71.52000000000001 9.06 l0.02 1.56 l0 1.26 l4.28 0 q0.16 0.6 0.16 1.31 t-0.16 1.31 l-4.28 0 l0 5.5 q-0.64 0.12 -1.6 0.12 t-1.6 -0.12 l0 -13.54 l0.14 -0.12 l8.56 0 q0.12 0.5 0.12 1.25 t-0.41 1.11 t-1.29 0.36 l-3.94 0 z M84.22000000000001 8.98 l0.02 1.48 l0 9.54 q-0.68 0.12 -1.62 0.12 t-1.58 -0.12 l0 -11.02 l-1.28 0.02 l-2.06 0 q-0.12 -0.58 -0.12 -1.33 t0.12 -1.33 l9.9 0 q0.16 0.52 0.16 1.26 t-0.4 1.07 t-1.28 0.33 l-0.58 0 l-1.26 -0.02 l-0.02 0 z"></path></g><g id="SvgjsG1010" featurekey="sloganFeature-0" transform="matrix(0.691742316856766,0,0,0.691742316856766,137.80631266584368,66.09857375513384)" fill="url(#symbol-foil0.6)"><path d="M0.28 7.359999999999999 l0 -1.72 l11.66 0 l0 1.72 l-4.86 0 l0 12.64 l-1.94 0 l0 -12.64 l-4.86 0 z M26.532000000000004 11.58 l0 -5.94 l1.94 0 l0 14.36 l-1.94 0 l0 -6.7 l-7.5 0 l0 6.7 l-1.94 0 l0 -14.36 l1.94 0 l0 5.94 l7.5 0 z M37.083999999999996 5.640000000000001 l0 14.36 l-1.94 0 l0 -14.36 l1.94 0 z M53.256 17.240000000000002 l0 -11.6 l1.88 0 l0 14.36 l-2.18 0 l-7.3 -11.6 l-0.04 0 l0 11.6 l-1.88 0 l0 -14.36 l2.3 0 l7.18 11.6 l0.04 0 z M63.448 14.96 l0 5.04 l-1.94 0 l0 -14.36 l1.94 0 l0 6.96 l6.96 -6.96 l2.68 0 l-5.98 5.8 l6.14 8.56 l-2.52 0 l-5.02 -7.2 z M87.172 20 l0 -14.36 l5.82 0 c3.74 0 6.04 2.84 6.04 6.98 c0 3.22 -1.4 7.38 -6.12 7.38 l-5.74 0 z M89.112 7.300000000000001 l0 11.04 l3.76 0 c2.52 0 4.16 -1.98 4.16 -5.6 s-1.66 -5.44 -4.3 -5.44 l-3.62 0 z M107.08399999999999 5.640000000000001 l0 14.36 l-1.94 0 l0 -14.36 l1.94 0 z M115.87599999999998 13.48 l0 6.52 l-1.94 0 l0 -14.36 l9.94 0 l0 1.72 l-8 0 l0 4.4 l7.04 0 l0 1.72 l-7.04 0 z M131.428 13.48 l0 6.52 l-1.94 0 l0 -14.36 l9.94 0 l0 1.72 l-8 0 l0 4.4 l7.04 0 l0 1.72 l-7.04 0 z M155.64 18.28 l0 1.72 l-10.6 0 l0 -14.36 l10.46 0 l0 1.72 l-8.52 0 l0 4.4 l7.86 0 l0 1.72 l-7.86 0 l0 4.8 l8.66 0 z M163.69199999999998 13.84 l0 6.16 l-1.94 0 l0 -14.36 l6.64 0 c2.36 0 4.72 0.82 4.72 3.86 c0 2.12 -1.08 2.9 -2 3.44 c0.82 0.34 1.64 0.7 1.72 2.7 l0.12 2.6 c0.02 0.8 0.12 1.1 0.72 1.44 l0 0.32 l-2.38 0 c-0.28 -0.88 -0.34 -3.06 -0.34 -3.6 c0 -1.18 -0.24 -2.56 -2.56 -2.56 l-4.7 0 z M163.69199999999998 7.300000000000001 l0 4.88 l4.5 0 c1.42 0 2.92 -0.36 2.92 -2.48 c0 -2.22 -1.62 -2.4 -2.58 -2.4 l-4.84 0 z M190.08399999999997 18.28 l0 1.72 l-10.6 0 l0 -14.36 l10.46 0 l0 1.72 l-8.52 0 l0 4.4 l7.86 0 l0 1.72 l-7.86 0 l0 4.8 l8.66 0 z M205.47599999999997 17.240000000000002 l0 -11.6 l1.88 0 l0 14.36 l-2.18 0 l-7.3 -11.6 l-0.04 0 l0 11.6 l-1.88 0 l0 -14.36 l2.3 0 l7.18 11.6 l0.04 0 z M212.48799999999997 7.359999999999999 l0 -1.72 l11.66 0 l0 1.72 l-4.86 0 l0 12.64 l-1.94 0 l0 -12.64 l-4.86 0 z M231.57999999999996 17.88 l0 2.12 l-2.08 0 l0 -2.12 l2.08 0 z"></path></g></svg><svg height="0" width="0"><pattern id="symbol-foil0" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.07)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.1" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.1)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.2" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.2)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.3" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.3)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.4" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.4)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.5" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.5)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.6" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.6)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.7" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.7)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.8" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.8)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.9" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.9)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.1" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.1)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.2" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.2)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.3" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.3)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.4" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.4)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.5" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.5)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.6" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.6)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.7" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.7)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.8" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.8)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.9" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.9)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil2" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(2)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><filter id="lower-highlight"><feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur"></feGaussianBlur><feOffset in="blur" dx="-0.5" dy="0.5" result="offsetBlur"></feOffset><feFlood flood-color="#ffffff" flood-opacity="0.15" result="offsetColor"></feFlood><feComposite in="offsetColor" in2="offsetBlur" operator="in" result="offsetBlur"></feComposite></filter><filter id="upper-shadow"><feDropShadow dx="-0.5" dy="-1" stdDeviation="0.5"></feDropShadow></filter><filter id="inset-shadow"><feOffset dx="-0.5" dy="0.5"></feOffset>                                                         <feGaussianBlur stdDeviation="0.4" result="offset-blur"></feGaussianBlur>                           <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"></feComposite> <feFlood flood-color="#300100" flood-opacity="0" result="color"></feFlood>                     <feComposite operator="in" in="color" in2="inverse" result="shadow"></feComposite>               <feComponentTransfer in="shadow" result="shadow">                                   <feFuncA type="linear" slope="1"></feFuncA></feComponentTransfer></filter></svg><svg viewBox="0 0 356 106" preserveAspectRatio="xMidYMid meet" class="css-6og3dc" id="cabbebga"><defs id="SvgjsDefs1006"></defs><g id="SvgjsG1007" featurekey="symbolFeature-0" transform="matrix(3.125,0,0,3.125,5.587935447692871e-7,4.50000074505806)" fill="url(#symbol-foil0.1)"><path xmlns="http://www.w3.org/2000/svg" d="M17.063 0l-.031.156-5 22-.188.844h3.094l.031-.156 5-22 .188-.844h-3.094zm-7.063 3l-.406.313-9 7-.594.469v1.438l.594.469 9 7 .406.313v-3.781l-6.063-4.719 6.063-4.719v-3.781zm12 0v3.781l6.063 4.719-6.063 4.719v3.781l.406-.313 9-7 .594-.469v-1.438l-.594-.469-9-7-.406-.313z" transform="translate(0 4)"></path></g><g id="SvgjsG1008" featurekey="textGroupContainer" transform="matrix(1,0,0,1,355,0)" fill="url(#symbol-foil0.4)"><rect xmlns="http://www.w3.org/2000/svg" y="0" height="1" width="1" opacity="0"></rect><rect xmlns="http://www.w3.org/2000/svg" y="0" x="-235" width="3" height="106"></rect></g><g id="SvgjsG1009" featurekey="vMvB0T-0" transform="matrix(2.318571702376495,0,0,2.318571702376495,134.52214327562112,13.042193973592179)" fill="url(#symbol-foil0.2)"><path d="M4.66 15.96 l-0.02 1.44 l0 0.02 q0.92 -0.04 1.48 -0.04 l4.64 0 q0 0.74 -0.06 1.14 q-0.24 1.54 -2.04 1.54 l-5.32 0 q-0.86 0 -1.35 -0.5 t-0.49 -1.36 l0 -11.72 l0.14 -0.14 l8.62 0 q0.12 0.58 0.12 1.26 t-0.28 1.42 l-5.46 0 l0.02 1.44 l0 1.4 q0.52 -0.02 1.36 -0.02 l3.06 0 q0.18 0.56 0.18 1.28 t-0.18 1.32 l-4.42 0 l0 1.52 z M17.76 15.719999999999999 l-1.58 0 l0 4.28 q-0.64 0.12 -1.6 0.12 q-0.98 0 -1.6 -0.12 l0 -13.56 l0.14 -0.14 q1.74 -0.04 2.89 -0.06 t1.75 -0.02 q1.1 0 2.01 0.3 t1.55 0.9 t0.99 1.49 t0.35 2.05 t-0.36 2.05 t-1 1.49 t-1.55 0.91 t-1.99 0.31 z M16.18 8.66 l0 4.66 q0.56 -0.02 0.89 -0.03 t0.43 -0.01 q0.54 0 0.9 -0.19 t0.58 -0.5 t0.32 -0.73 t0.1 -0.88 q0 -0.44 -0.1 -0.86 t-0.31 -0.74 t-0.55 -0.51 t-0.8 -0.19 l-0.82 0 t-0.64 -0.02 z M24.8 20 l0 -13.66 q0.62 -0.12 1.6 -0.12 t1.62 0.12 l0 13.66 q-0.64 0.12 -1.62 0.12 t-1.6 -0.12 z M38.24 11.78 l0 -0.24 q0 -2.96 -2.2 -2.96 q-1.26 0 -1.82 1.15 t-0.56 3.39 q0 2.22 0.7 3.3 t2.04 1.08 q0.7 0 1.55 -0.33 t1.85 -1.05 q0.5 0.34 0.93 0.93 t0.53 1.13 q-0.46 0.44 -1.07 0.83 t-1.32 0.67 t-1.48 0.45 t-1.55 0.17 q-1.54 0 -2.6 -0.59 t-1.71 -1.57 t-0.94 -2.26 t-0.29 -2.66 q0 -1.8 0.45 -3.15 t1.22 -2.25 t1.81 -1.35 t2.22 -0.45 q1.2 0 2.18 0.32 t1.67 0.88 t1.06 1.32 t0.37 1.64 q0 1.78 -1.82 1.78 q-0.54 0 -1.22 -0.18 z M53.080000000000005 10.56 q0 0.66 -0.2 1.25 t-0.53 1.06 t-0.78 0.82 t-0.93 0.53 q1.04 0.38 1.54 1.84 l0.6 1.7 q0.34 1 1 1.48 q-0.3 0.4 -0.9 0.67 t-1.32 0.27 t-1.12 -0.41 t-0.74 -1.43 l-0.72 -2.1 q-0.22 -0.6 -0.59 -0.92 t-1.11 -0.32 l-0.82 0 l0 5 q-0.64 0.12 -1.6 0.12 t-1.58 -0.12 l0 -13.56 l0.14 -0.14 q1.74 -0.04 2.93 -0.06 t1.87 -0.02 q1.1 0 2 0.27 t1.53 0.81 t0.98 1.36 t0.35 1.9 z M46.46000000000001 8.62 l0 3.92 q0.9 0 1.54 -0.03 t1.03 -0.24 t0.59 -0.59 t0.2 -1.1 q0 -1.94 -1.88 -1.94 l-0.83 0 t-0.65 -0.02 z M58.900000000000006 17.14 q-0.54 0 -0.8 -0.02 l-0.86 2.9 q-0.48 0.12 -1.34 0.12 q-0.96 0 -1.56 -0.22 l-0.1 -0.16 l4.4 -13.42 q0.78 -0.12 1.82 -0.12 q1.18 0 1.88 0.14 l4.32 13.44 q-0.7 0.38 -1.58 0.38 q-1.04 0 -1.46 -0.36 t-0.72 -1.38 l-0.38 -1.32 q-0.26 0.02 -0.78 0.02 l-2.84 0 z M58.84 14.620000000000001 l0.8 -0.02 l1.46 0 q0.1 0 0.35 0.01 t0.37 0.01 l-0.34 -1.24 q-0.48 -1.68 -1.1 -4.12 l-0.12 0 q-0.16 0.86 -0.96 3.82 z M71.52000000000001 9.06 l0.02 1.56 l0 1.26 l4.28 0 q0.16 0.6 0.16 1.31 t-0.16 1.31 l-4.28 0 l0 5.5 q-0.64 0.12 -1.6 0.12 t-1.6 -0.12 l0 -13.54 l0.14 -0.12 l8.56 0 q0.12 0.5 0.12 1.25 t-0.41 1.11 t-1.29 0.36 l-3.94 0 z M84.22000000000001 8.98 l0.02 1.48 l0 9.54 q-0.68 0.12 -1.62 0.12 t-1.58 -0.12 l0 -11.02 l-1.28 0.02 l-2.06 0 q-0.12 -0.58 -0.12 -1.33 t0.12 -1.33 l9.9 0 q0.16 0.52 0.16 1.26 t-0.4 1.07 t-1.28 0.33 l-0.58 0 l-1.26 -0.02 l-0.02 0 z"></path></g><g id="SvgjsG1010" featurekey="sloganFeature-0" transform="matrix(0.691742316856766,0,0,0.691742316856766,137.80631266584368,66.09857375513384)" fill="url(#symbol-foil0.6)"><path d="M0.28 7.359999999999999 l0 -1.72 l11.66 0 l0 1.72 l-4.86 0 l0 12.64 l-1.94 0 l0 -12.64 l-4.86 0 z M26.532000000000004 11.58 l0 -5.94 l1.94 0 l0 14.36 l-1.94 0 l0 -6.7 l-7.5 0 l0 6.7 l-1.94 0 l0 -14.36 l1.94 0 l0 5.94 l7.5 0 z M37.083999999999996 5.640000000000001 l0 14.36 l-1.94 0 l0 -14.36 l1.94 0 z M53.256 17.240000000000002 l0 -11.6 l1.88 0 l0 14.36 l-2.18 0 l-7.3 -11.6 l-0.04 0 l0 11.6 l-1.88 0 l0 -14.36 l2.3 0 l7.18 11.6 l0.04 0 z M63.448 14.96 l0 5.04 l-1.94 0 l0 -14.36 l1.94 0 l0 6.96 l6.96 -6.96 l2.68 0 l-5.98 5.8 l6.14 8.56 l-2.52 0 l-5.02 -7.2 z M87.172 20 l0 -14.36 l5.82 0 c3.74 0 6.04 2.84 6.04 6.98 c0 3.22 -1.4 7.38 -6.12 7.38 l-5.74 0 z M89.112 7.300000000000001 l0 11.04 l3.76 0 c2.52 0 4.16 -1.98 4.16 -5.6 s-1.66 -5.44 -4.3 -5.44 l-3.62 0 z M107.08399999999999 5.640000000000001 l0 14.36 l-1.94 0 l0 -14.36 l1.94 0 z M115.87599999999998 13.48 l0 6.52 l-1.94 0 l0 -14.36 l9.94 0 l0 1.72 l-8 0 l0 4.4 l7.04 0 l0 1.72 l-7.04 0 z M131.428 13.48 l0 6.52 l-1.94 0 l0 -14.36 l9.94 0 l0 1.72 l-8 0 l0 4.4 l7.04 0 l0 1.72 l-7.04 0 z M155.64 18.28 l0 1.72 l-10.6 0 l0 -14.36 l10.46 0 l0 1.72 l-8.52 0 l0 4.4 l7.86 0 l0 1.72 l-7.86 0 l0 4.8 l8.66 0 z M163.69199999999998 13.84 l0 6.16 l-1.94 0 l0 -14.36 l6.64 0 c2.36 0 4.72 0.82 4.72 3.86 c0 2.12 -1.08 2.9 -2 3.44 c0.82 0.34 1.64 0.7 1.72 2.7 l0.12 2.6 c0.02 0.8 0.12 1.1 0.72 1.44 l0 0.32 l-2.38 0 c-0.28 -0.88 -0.34 -3.06 -0.34 -3.6 c0 -1.18 -0.24 -2.56 -2.56 -2.56 l-4.7 0 z M163.69199999999998 7.300000000000001 l0 4.88 l4.5 0 c1.42 0 2.92 -0.36 2.92 -2.48 c0 -2.22 -1.62 -2.4 -2.58 -2.4 l-4.84 0 z M190.08399999999997 18.28 l0 1.72 l-10.6 0 l0 -14.36 l10.46 0 l0 1.72 l-8.52 0 l0 4.4 l7.86 0 l0 1.72 l-7.86 0 l0 4.8 l8.66 0 z M205.47599999999997 17.240000000000002 l0 -11.6 l1.88 0 l0 14.36 l-2.18 0 l-7.3 -11.6 l-0.04 0 l0 11.6 l-1.88 0 l0 -14.36 l2.3 0 l7.18 11.6 l0.04 0 z M212.48799999999997 7.359999999999999 l0 -1.72 l11.66 0 l0 1.72 l-4.86 0 l0 12.64 l-1.94 0 l0 -12.64 l-4.86 0 z M231.57999999999996 17.88 l0 2.12 l-2.08 0 l0 -2.12 l2.08 0 z"></path></g></svg><svg height="0" width="0"><pattern id="symbol-foil0" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.07)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.1" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.1)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.2" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.2)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.3" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.3)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.4" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.4)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.5" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.5)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.6" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.6)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.7" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.7)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.8" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.8)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil0.9" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(0.9)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.1" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.1)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.2" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.2)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.3" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.3)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.4" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.4)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.5" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.5)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.6" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.6)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.7" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.7)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.8" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.8)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil1.9" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(1.9)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><pattern id="symbol-foil2" patternUnits="userSpaceOnUse" width="700" height="700" x="0px" y="-150px" patternTransform="scale(2)"><image width="700" height="700" xlink:href="https://cdn.logojoy.com/app/editor/goldfoil8.jpg" x="0" y="0"></image></pattern><filter id="lower-highlight"><feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur"></feGaussianBlur><feOffset in="blur" dx="-0.5" dy="0.5" result="offsetBlur"></feOffset><feFlood flood-color="#ffffff" flood-opacity="0.15" result="offsetColor"></feFlood><feComposite in="offsetColor" in2="offsetBlur" operator="in" result="offsetBlur"></feComposite></filter><filter id="upper-shadow"><feDropShadow dx="-0.5" dy="-1" stdDeviation="0.5"></feDropShadow></filter><filter id="inset-shadow"><feOffset dx="-0.5" dy="0.5"></feOffset>                                                         <feGaussianBlur stdDeviation="0.4" result="offset-blur"></feGaussianBlur>                           <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"></feComposite> <feFlood flood-color="#300100" flood-opacity="0" result="color"></feFlood>                     <feComposite operator="in" in="color" in2="inverse" result="shadow"></feComposite>               <feComponentTransfer in="shadow" result="shadow">                                   <feFuncA type="linear" slope="1"></feFuncA></feComponentTransfer></filter></svg></div></div></div></div>
+</body>
+
+</html>
